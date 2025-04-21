@@ -75,9 +75,37 @@ print(1 in list)  # False
 a = 5  # 101 in binary
 b = 3  # 011 in binary
 
+# 101
+# 011
+# 001   
+
 print(a & b)  # 1 (Binary: 001)
+
+# 101
+# 011
+# 111 
+
 print(a | b)  # 7 (Binary: 111)
+
+# 101
+# 011
+# 110
+
 print(a ^ b)  # 6 (Binary: 110)
-print(~a)  # -6 (Inverts all bits)
+
+# 101
+# 011
+# 110
+
+print(~a)  # -6 (Inverts all bits) (Binary: 010)
+
 print(a << 1)  # 10 (Binary: 1010)
+
+#  101
+# 1010
+
 print(a >> 1)  # 2 (Binary: 10)
+
+# 101
+#  010  #after 1
+
