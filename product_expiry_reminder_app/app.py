@@ -14,24 +14,21 @@ class ProductExpiryReminderApp:
         self.images_folder = images_folder
         self.category_images = {
             "Dairy 🧀": [
-                "product_images/dairy1.png", "product_images/dairy2.png", "product_images/dairy3.png", "product_images/dairy4.png","product_images/dairy5.png", "product_images/dairy6.png", "product_images/dairy7.png", "product_images/dairy8.png","product_images/dairy9.png", "product_images/dairy10.png", "product_images/dairy11.png", "product_images/dairy12.png"
+                "assets/product_images/dairy1.png", "assets/product_images/dairy2.png", "assets/product_images/dairy3.png", "assets/product_images/dairy4.png","assets/product_images/dairy5.png", "assets/product_images/dairy6.png", "assets/product_images/dairy7.png", "assets/product_images/dairy8.png","assets/product_images/dairy9.png", "assets/product_images/dairy10.png", "assets/product_images/dairy11.png", "assets/product_images/dairy12.png"
                 ],
             "Refreshments 🥤": [
-                "product_images/bev1.png", "product_images/bev2.png", "product_images/bev3.png", "product_images/bev4.png", "product_images/bev5.png", "product_images/bev6.png", "product_images/bev7.png", "product_images/bev8.png", "product_images/bev9.png", "product_images/bev10.png", "product_images/bev11.png", "product_images/bev12.png"],
+                "assets/product_images/bev1.png", "assets/product_images/bev2.png", "assets/product_images/bev3.png", "assets/product_images/bev4.png", "assets/product_images/bev5.png", "assets/product_images/bev6.png", "assets/product_images/bev7.png", "assets/product_images/bev8.png", "assets/product_images/bev9.png", "assets/product_images/bev10.png", "assets/product_images/bev11.png", "assets/product_images/bev12.png"],
             "Snacks 🍪": [
-                "product_images/snack1.png", "product_images/snack2.png", "product_images/snack3.png", "product_images/snack4.png", "product_images/snack5.png", "product_images/snack6.png", "product_images/snack7.png", "product_images/snack8.png", "product_images/snack9.png", "product_images/snack10.png", "product_images/snack11.png", "product_images/snack12.png"
+                "assets/product_images/snack1.png", "assets/product_images/snack2.png", "assets/product_images/snack3.png", "assets/product_images/snack4.png", "assets/product_images/snack5.png", "assets/product_images/snack6.png", "assets/product_images/snack7.png", "assets/product_images/snack8.png", "assets/product_images/snack9.png", "assets/product_images/snack10.png", "assets/product_images/snack11.png", "assets/product_images/snack12.png"
                 ],
             "Vegetables 🥦": [
-                "product_images/veg1.png", "product_images/veg2.png", "product_images/veg3.png", "product_images/veg4.png", "product_images/veg5.png", "product_images/veg6.png", "product_images/veg7.png", "product_images/veg8.png", "product_images/veg9.png", "product_images/veg10.png", "product_images/veg11.png", "product_images/veg12.png"
+                "assets/product_images/veg1.png", "assets/product_images/veg2.png", "assets/product_images/veg3.png", "assets/product_images/veg4.png", "assets/product_images/veg5.png", "assets/product_images/veg6.png", "assets/product_images/veg7.png", "assets/product_images/veg8.png", "assets/product_images/veg9.png", "assets/product_images/veg10.png", "assets/product_images/veg11.png", "assets/product_images/veg12.png"
                 ],
             "Fruits 🍎": [
-                "product_images/fruit1.png", "product_images/fruit2.png", "product_images/fruit3.png",
-                "product_images/fruit4.png", "product_images/fruit5.png", "product_images/fruit6.png",
-                "product_images/fruit7.png", "product_images/fruit8.png", "product_images/fruit9.png",
-                "product_images/fruit10.png", "product_images/fruit11.png", "product_images/fruit12.png"
+                "assets/product_images/fruit1.png", "assets/product_images/fruit2.png", "assets/product_images/fruit3.png","assets/product_images/fruit4.png", "assets/product_images/fruit5.png", "assets/product_images/fruit6.png","assets/product_images/fruit7.png", "assets/product_images/fruit8.png", "assets/product_images/fruit9.png","assets/product_images/fruit10.png", "assets/product_images/fruit11.png", "assets/product_images/fruit12.png"
             ],
             "Frozen ❄️": [
-                "product_images/frozen1.png", "product_images/frozen2.png", "product_images/frozen3.png", "product_images/frozen4.png", "product_images/frozen5.png", "product_images/frozen6.png", "product_images/frozen7.png", "product_images/frozen8.png", "product_images/frozen9.png", "product_images/frozen10.png", "product_images/frozen11.png", "product_images/frozen12.png"
+                "assets/product_images/frozen1.png", "assets/product_images/frozen2.png", "assets/product_images/frozen3.png", "assets/product_images/frozen4.png", "assets/product_images/frozen5.png", "assets/product_images/frozen6.png", "assets/product_images/frozen7.png", "assets/product_images/frozen8.png", "assets/product_images/frozen9.png", "assets/product_images/frozen10.png", "assets/product_images/frozen11.png", "assets/product_images/frozen12.png"
                 ]
         }
 
