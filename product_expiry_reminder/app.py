@@ -3,7 +3,6 @@ import os
 from datetime import datetime
 import pandas as pd
 
-
 st.set_page_config(page_title="ExpireAlert", page_icon="🕛", layout="centered")
 st.title("🕛 Product Expiry Reminder App")
 st.write("With **🕛 Product Expiry Reminder** App, you’ll always know which product is nearing its expiration date, giving you one last chance to use it before it's too late.")
@@ -12,27 +11,14 @@ class ProductExpiryReminderApp:
     def __init__(self, products_file="products.csv", images_folder="product_images"):
         self.products_file = products_file
         self.images_folder = images_folder
+
         self.category_images = {
-            "Dairy 🧀": [
-                "product_images/dairy1.png", "product_images/dairy2.png", "product_images/dairy3.png", "product_images/dairy4.png","product_images/dairy5.png", "product_images/dairy6.png", "product_images/dairy7.png", "product_images/dairy8.png","product_images/dairy9.png", "product_images/dairy10.png", "product_images/dairy11.png", "product_images/dairy12.png"
-                ],
-            "Refreshments 🥤": [
-                "product_images/bev1.png", "product_images/bev2.png", "product_images/bev3.png", "product_images/bev4.png", "product_images/bev5.png", "product_images/bev6.png", "product_images/bev7.png", "product_images/bev8.png", "product_images/bev9.png", "product_images/bev10.png", "product_images/bev11.png", "product_images/bev12.png"],
-            "Snacks 🍪": [
-                "product_images/snack1.png", "product_images/snack2.png", "product_images/snack3.png", "product_images/snack4.png", "product_images/snack5.png", "product_images/snack6.png", "product_images/snack7.png", "product_images/snack8.png", "product_images/snack9.png", "product_images/snack10.png", "product_images/snack11.png", "product_images/snack12.png"
-                ],
-            "Vegetables 🥦": [
-                "product_images/veg1.png", "product_images/veg2.png", "product_images/veg3.png", "product_images/veg4.png", "product_images/veg5.png", "product_images/veg6.png", "product_images/veg7.png", "product_images/veg8.png", "product_images/veg9.png", "product_images/veg10.png", "product_images/veg11.png", "product_images/veg12.png"
-                ],
-            "Fruits 🍎": [
-                "product_images/fruit1.png", "product_images/fruit2.png", "product_images/fruit3.png",
-                "product_images/fruit4.png", "product_images/fruit5.png", "product_images/fruit6.png",
-                "product_images/fruit7.png", "product_images/fruit8.png", "product_images/fruit9.png",
-                "product_images/fruit10.png", "product_images/fruit11.png", "product_images/fruit12.png"
-            ],
-            "Frozen ❄️": [
-                "product_images/frozen1.png", "product_images/frozen2.png", "product_images/frozen3.png", "product_images/frozen4.png", "product_images/frozen5.png", "product_images/frozen6.png", "product_images/frozen7.png", "product_images/frozen8.png", "product_images/frozen9.png", "product_images/frozen10.png", "product_images/frozen11.png", "product_images/frozen12.png"
-                ]
+            "Dairy 🧀": [os.path.join(self.images_folder, f"dairy{i+1}.png") for i in range(12)],
+            "Refreshments 🥤": [os.path.join(self.images_folder, f"bev{i+1}.png") for i in range(12)],
+            "Snacks 🍪": [os.path.join(self.images_folder, f"snack{i+1}.png") for i in range(12)],
+            "Vegetables 🥦": [os.path.join(self.images_folder, f"veg{i+1}.png") for i in range(12)],
+            "Fruits 🍎": [os.path.join(self.images_folder, f"fruit{i+1}.png") for i in range(12)],
+            "Frozen ❄️": [os.path.join(self.images_folder, f"frozen{i+1}.png") for i in range(12)],
         }
 
         if not os.path.exists(self.images_folder):
@@ -43,7 +29,7 @@ class ProductExpiryReminderApp:
             return pd.read_csv(self.products_file)
         else:
             return pd.DataFrame(columns=["image_path", "name", "expiry_date", "category"])
-        
+
     def save_product(self, product):
         df = self.load_products()
         df = pd.concat([df, pd.DataFrame([product])], ignore_index=True)
@@ -67,7 +53,6 @@ class ProductExpiryReminderApp:
     def delete_product(self, index):
         df = self.load_products()
         image_path = df.loc[index, "image_path"]
-
         is_category_image = any(image_path in imgs for imgs in self.category_images.values())
         if os.path.exists(image_path) and not is_category_image:
             os.remove(image_path)
@@ -95,14 +80,16 @@ class ProductExpiryReminderApp:
             cols = st.columns(6)
             for i, img_path in enumerate(image_paths):
                 with cols[i % 6]:
-                    st.image(img_path, width=90, caption=f"Image {i+1}")
-                    button_label = "✅" if st.session_state.selected_image == img_path else "⬜"
-                    if st.button(button_label, key=f"select_{category}_{i}"):
-                        st.session_state.selected_image = img_path
-                        st.rerun()
+                    if os.path.exists(img_path):
+                        st.image(img_path, width=90, caption=f"Image {i+1}")
+                        button_label = "✅" if st.session_state.selected_image == img_path else "⬜"
+                        if st.button(button_label, key=f"select_{category}_{i}"):
+                            st.session_state.selected_image = img_path
+                            st.rerun()
+                    else:
+                        st.warning(f"Image not found: {img_path}")
 
         selected_image = st.session_state.selected_image if category != "Select Category" else None
-
         product_name = st.text_input("2️⃣ Product Name")
         expiry_date = st.date_input("3️⃣ Expiry Date")
 
@@ -155,7 +142,10 @@ class ProductExpiryReminderApp:
 
                 col1, col2 = st.columns([1, 4])
                 with col1:
-                    st.image(product['image_path'], width=100)
+                    if os.path.exists(product['image_path']):
+                        st.image(product['image_path'], width=100)
+                    else:
+                        st.warning("Image not found")
                 with col2:
                     st.markdown(f"### {product['name']} ({product['category']})")
                     st.markdown(f"**Expiry:** `{expiry}` — :{color}[{message}]")
@@ -180,7 +170,7 @@ class ProductExpiryReminderApp:
                 st.error(f"❌ '{product['name']}' has expired!")
 
 if __name__ == "__main__":
-    app = ProductExpiryReminderApp()    
-    app.show_expiry_notifications()  
+    app = ProductExpiryReminderApp()
+    app.show_expiry_notifications()
     app.display_add_product_section()
     app.display_product_list()
